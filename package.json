@@ -12,6 +12,8 @@
     "electron": "^2.0.0"
   },
   "dependencies": {
-    "net": "^1.0.2"
+    "events": "^2.0.0",
+    "net": "^1.0.2",
+    "shortid": "^2.2.8"
   }
 }

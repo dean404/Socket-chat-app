@@ -3,21 +3,19 @@ const net = require('net');
 
 const con = require('./serverConnectionClass');
 
-class Server extends EventEmitter {
+class Server {
 	constructor() {
-		super();
+		this.clients = {};
 		this.server = net.createServer(socket => {
-			let clientConnect = new con(this.server, socket);
-			this.sendServerData(socket);
+			let clientConnect = new con(this, socket);
+
+			this.clients[clientConnect.clientID] = clientConnect;
+			console.log(clientConnect.clientID + " connected");
 		});
 	}
 
 	 startServer(port){ 
 		 this.server.listen(port);
-	}
-
-	sendServerData(socket) { // send message to clients
-		socket.write("meme");
 	}
 }
 
