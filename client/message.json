@@ -1,0 +1,17 @@
+{
+	"nested" : {
+		"baseMessage" : {
+			"nested": {
+				"message": {
+					"fields": {
+						"textMessage": {
+							"rule": "required",
+							"type" : "string",
+							"id": 1
+						}
+					}
+				}
+			}
+		}
+	}
+}

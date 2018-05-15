@@ -23,6 +23,7 @@ class Data extends EventEmitter {
 	}
 
 	onClose() { // when a client disconnects
+		delete this.server.clients[this.clientID];
 		console.log("client disconnected");
 	}
 }

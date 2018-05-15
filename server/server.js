@@ -1,4 +1,4 @@
-const serverClass = require('../src/classes/serverClass.js');
+const serverClass = require('./classes/serverClass.js');
 
 	var server = new serverClass(7070);
 
