@@ -1,5 +1,10 @@
 const serverClass = require('./classes/serverClass.js');
+const Broadcast = require('./broadcast');
 
-	var server = new serverClass(7070);
+(async ()=>{
+	var server = new serverClass();
+	server.startServer(7070);
 
-	 server.startServer(7070);
+	let emit = await Broadcast.createSocket(7070,"meme");
+	setInterval(emit.broadcast.bind(emit), 1500);
+})();

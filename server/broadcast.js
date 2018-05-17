@@ -1,15 +1,30 @@
 const dgram = require('dgram');
-const broadcastMessage = Buffer.from("hello im here");
-const client = dgram.createSocket('udp4');
 
-function sendBroadcast() {
-	client.bind( ()=>{
-		client.setBroadcast(true);
-		client.send(broadcastMessage, 41234, '172.20.95.255', err => {
-			console.log(broadcastMessage);
-			client.close();
+class Broadcast{
+	static async createSocket(port, name) {
+		let client = dgram.createSocket('udp4');
+
+		await new Promise((resolve, reject)=> {
+			client.bind(port, (err)=> {
+				if(err) {
+					reject(err);
+				}
+				resolve();
+			}); 
 		});
-	});
+
+		client.setBroadcast(true);
+		return new Broadcast(client, name);
+	}
+
+	constructor(client, name) {
+		this.client = client;
+		this.name = name;
+	}
+
+	broadcast() {
+		this.client.send(Buffer.from(this.name), 41234, '255.255.255.255');
+	}
 }
 
-sendBroadcast();
+module.exports = Broadcast;
