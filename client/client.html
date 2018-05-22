@@ -10,14 +10,22 @@
 </head>
 <body>
 
+	<div id="bodyContainer">
+		<div id="serverList">
+			<h3>Available servers:</h3>
+			<ul id="servers"></ul>
+		</div>
+		
 		<div id="containerMessage">
+			<h3>Chat room 'name'</h3>
 			<ul id="messages"></ul>
 		</div>
-	
-		<form id="chatForm" action="" onsubmit="event.preventDefault()">
-			<input type="text"` id="input">
-			<input type="submit" id="submitButton" value="Send">
-		</form>
+	</div>
+
+	<form id="chatForm" action="" onsubmit="event.preventDefault()">
+		<input type="text"` id="input">
+		<input type="submit" id="submitButton" value="Send">
+	</form>
 
 	<script src="./client.js"></script>
 </body>

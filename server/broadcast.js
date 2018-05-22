@@ -5,7 +5,7 @@ class Broadcast{
 		let client = dgram.createSocket('udp4');
 
 		await new Promise((resolve, reject)=> {
-			client.bind(port, (err)=> {
+			client.bind({port: port, exclusive: false}, (err)=> {
 				if(err) {
 					reject(err);
 				}

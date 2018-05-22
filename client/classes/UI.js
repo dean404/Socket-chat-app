@@ -13,11 +13,38 @@ class UI extends EventEmitter {
 		message.value = "";
 	}
 
-	createNewElement(message, attr){
+	createNewMessageElement(message, attr){
 		let item = document.createElement('li');
-		item.className += attr + " message";
+
+		if(attr == undefined) {
+			item.className = "serverListItem";
+		} else {
+			item.className += attr + " message";
+		}
+	
 		item.appendChild(document.createTextNode(message));
-		document.getElementById('messages').appendChild(item);
+		document.getElementById("messages").appendChild(item);
+	}
+
+	createNewServerElement(name, address, port) {
+		let item = document.createElement('li');
+		item.className = "serverListItem";
+
+		item.setAttribute("data-address", address);
+		item.setAttribute("data-port", port);
+		
+		item.onclick = this.serverElementClicked.bind(this,item)
+		item.appendChild(document.createTextNode(name));
+		document.getElementById('servers').appendChild(item);
+	}
+
+	serverElementClicked(element) {
+		let address = element.dataset.address;
+		let port = element.dataset.port;
+		this.emit('connect',{
+			address,
+			port
+		})
 	}
 
 	chatScroll() {

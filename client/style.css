@@ -54,9 +54,26 @@ table {
 }
 /* end reset css */
 
-#containerMessage {
+h3 {
+	text-align: center;
+}
+
+#bodyContainer {
 	width: 100%;
 	height: 95%;
+	background-color: lightgray;
+	display: flex;
+}
+
+#serverList {
+	width: 18%;
+	height: 100%;
+	background-color: #6495ed;
+}
+
+#containerMessage {
+	width: 82%;
+	height: 100%;
 	overflow: scroll;
 	overflow-x: visible;
 	word-wrap: break-word;
@@ -106,4 +123,14 @@ table {
 	width: 10%;
 	padding: 0.5%;
 	border: 1px solid #404040;
+}
+
+#servers {
+	list-style: decimal;
+	list-style-position: inside;
+}
+
+.serverListItem {
+	margin-top: 10px;
+	cursor: pointer;
 }

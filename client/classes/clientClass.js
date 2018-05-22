@@ -7,18 +7,18 @@ let root = protobuf.Root.fromJSON(messageProtobuf);
 let text = root.lookupType("baseMessage.message");
 
 class Client extends EventEmitter {
-	constructor(port) {
+	constructor(port, address) {
 		super();
-		this.client = net.createConnection(port);
+		this.client = net.createConnection(port, address);
 		this.client.on('data', this.onData.bind(this));
 	}
 	
-	onData(data) { //when the server sends data
+	onData(data) {
 		let message = text.decode(data);
 		this.emit('message', message)
 	}
 
-	sendData(message) { // send data to server
+	sendData(message) {
 		let  messageInstance = text.create({
 			textMessage: message
 		});
@@ -29,4 +29,3 @@ class Client extends EventEmitter {
 }
 
 module.exports = Client;
-
