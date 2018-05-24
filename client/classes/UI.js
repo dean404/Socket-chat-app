@@ -13,15 +13,27 @@ class UI extends EventEmitter {
 		message.value = "";
 	}
 
+	createTitle(name) {
+		let title = document.createElement('h3');
+		title.id = "title";
+
+		//prevent multiple elements from being created
+		if(document.getElementById("title")) {
+			document.getElementById("title").outerHTML = "";
+		} else {
+			//do nothing
+		}
+
+		title.appendChild(document.createTextNode(name));
+		document.getElementById("containerMessage").prepend(title);
+	}
+
 	createNewMessageElement(message, attr){
 		let item = document.createElement('li');
 
-		if(attr == undefined) {
-			item.className = "serverListItem";
-		} else {
-			item.className += attr + " message";
-		}
-	
+		item.className += "message " ;
+		item.className += attr;
+
 		item.appendChild(document.createTextNode(message));
 		document.getElementById("messages").appendChild(item);
 	}
@@ -33,17 +45,20 @@ class UI extends EventEmitter {
 		item.setAttribute("data-address", address);
 		item.setAttribute("data-port", port);
 		
-		item.onclick = this.serverElementClicked.bind(this,item)
+		item.onclick = this.serverElementClicked.bind(this, item, name);
+
 		item.appendChild(document.createTextNode(name));
 		document.getElementById('servers').appendChild(item);
 	}
 
-	serverElementClicked(element) {
+	serverElementClicked(element, name) {
 		let address = element.dataset.address;
 		let port = element.dataset.port;
+
 		this.emit('connect',{
 			address,
-			port
+			port,
+			name
 		})
 	}
 
