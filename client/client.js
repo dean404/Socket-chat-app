@@ -23,8 +23,12 @@ ui.on('connect', ({port, address, name}) => { // when a link from the server lis
 		counter +=1;
 
 		ui.on('message', message => { // messages from the current client
-			client.sendData(message);
-			ui.createNewMessageElement(message, 'messageRight');
+			if (/\S/.test(message)) {
+				client.sendData(message);
+				ui.createNewMessageElement(message, 'messageRight');
+			} else {
+				// do nothing
+			}
 		});
 
 	} else {
