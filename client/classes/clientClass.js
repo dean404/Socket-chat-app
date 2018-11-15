@@ -14,6 +14,7 @@ class Client extends EventEmitter {
 	}
 	
 	onData(data) {
+		console.log("i has data")
 		let message = text.decode(data);
 		this.emit('message', message)
 	}

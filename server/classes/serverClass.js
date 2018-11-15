@@ -14,6 +14,7 @@ class Server {
 	}
 
 	 startServer(port){ 
+		 console.log("listening")
 		 this.server.listen(port);
 	}
 }

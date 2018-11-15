@@ -1,9 +1,9 @@
 const serverClass = require('./classes/serverClass.js');
 const broadcast = require('./broadcast');
-const config = require('../config.json');
+// const config = require('../config.json');
 
-let port = config.port;
-let name = config.name;
+let port = 41235;
+let name = "server";
 
 (async ()=>{
 	var server = new serverClass();
