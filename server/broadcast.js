@@ -1,16 +1,18 @@
 const dgram = require('dgram');
-
-class Broadcast{
+class Broadcast {
 	static async createSocket(port, name) {
 		let client = dgram.createSocket('udp4');
-
-		await new Promise((resolve, reject)=> {
-			client.bind({port: port, exclusive: false}, (err)=> {
-				if(err) {
+		client.send()
+		await new Promise((resolve, reject) => {
+			client.bind({
+				port: port,
+				exclusive: false
+			}, (err) => {
+				if (err) {
 					reject(err);
 				}
 				resolve();
-			}); 
+			});
 		});
 
 		client.setBroadcast(true);

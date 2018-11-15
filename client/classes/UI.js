@@ -25,7 +25,7 @@ class UI extends EventEmitter {
 		}
 
 		title.appendChild(document.createTextNode(name));
-		document.getElementById("containerMessage").prepend(title);
+		document.getElementById("header").prepend(title);
 	}
 
 	createNewMessageElement(message, attr){
